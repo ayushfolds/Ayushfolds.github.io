@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Folds | Premium Origami Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <script type="module">
+        // Firebase Imports - DO NOT CHANGE THESE URLS
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, query, writeBatch, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // IMPORTANT: Global Variables MUST be used for Firebase setup
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        // **NEW: Creator Check** - Only the user with the token can edit.
+        const isCreator = !!initialAuthToken;
+
+        let db;
+        let auth;
+        let userId = 'loading';
+        let editMode = false;
+        
+        // Firestore path structure
+        const getProjectCollectionRef = () => {
+            return collection(db, `artifacts/${appId}/users/${userId}/origami_projects`);
+        };
+
+        // --- UPDATED DEFAULT PROJECT DATA WITH RELIABLE PUBLIC IMAGE URLS ---
+        const defaultProjects = [
+            { 
+                id: 'p1', 
+                title: 'The Azure Bloom', 
+                description: 'A striking modular design, capturing the complexity and depth of a fully opened geometric flower in vibrant, custom-treated paper.', 
+                // Reliable public URL for a beautiful origami-like flower
+                imageUrl: 'https://images.unsplash.com/photo-1596707323204-74c76b97607a?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+                complexity: 'Medium | Modular' 
+            },
+            { 
+                id: 'p2', 
+                title: 'Wyvern of Jade', 
+                description: 'An example of high-complexity crease-pattern folding. This mythical creature is detailed with scales, claws, and dynamic posture from a single square sheet.', 
+                // Reliable public URL for a textured/patterned folded object
+                imageUrl: 'https://images.unsplash.com/photo-1502444330084-2571597f7481?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+                complexity: 'High-Level | Single Sheet'
+            },
+            { 
+                id: 'p3', 
+                title: 'Electric Silhouette', 
+                description: 'A miniature sculptural representation of a rock guitar, emphasizing clean lines and dramatic lighting. Folded from a unique, dual-tone paper.', 
+                // Reliable public URL for an intricate folded structure
+                imageUrl: 'https://images.unsplash.com/photo-1549419137-77b5a8e0f6f4?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+                complexity: 'Precision Detail'
+            },
+            { 
+                id: 'p4', 
+                title: 'Rosé Pinwheel', 
+                description: 'An elegant, tessellation-inspired floral piece. The dynamic folds create a natural swirl and optical illusion, perfect for sophisticated display.', 
+                // Reliable public URL for a delicate paper craft
+                imageUrl: 'https://images.unsplash.com/photo-1517478144673-8631b0e24172?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+                complexity: 'Refined Classic'
+            }
+        ];
+        // ---------------------------------------------------------------------------------
+
+        // --- FIREBASE INITIALIZATION & AUTHENTICATION ---
+        async function initFirebase() {
+            try {
+                // setLogLevel('debug'); // Uncomment for debugging
+                const app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+
+                // Authenticate the user
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                } else {
+                    await signInAnonymously(auth);
+                }
+                
+                userId = auth.currentUser?.uid || crypto.randomUUID();
+                
+                // Start listening for data changes
+                listenForProjects();
+                document.getElementById('user-id-display').textContent = `User ID: ${userId}`;
+
+                // Set initial edit mode state based on creator status
+                editMode = isCreator; // Creator starts in view mode, but can toggle
+
+            } catch (error) {
+                console.error("Firebase Initialization Failed:", error);
+                document.getElementById('project-grid').innerHTML = '<p class="col-span-1 md:col-span-2 text-red-500 font-bold text-center">Failed to load content. Check console for Firebase errors.</p>';
+            }
+        }
+        
+        // --- DATA LISTENING AND RENDERING ---
+        function listenForProjects() {
+            const q = query(getProjectCollectionRef());
+
+            onSnapshot(q, (snapshot) => {
+                let projects = [];
+                snapshot.forEach((doc) => {
+                    projects.push(doc.data());
+                });
+
+                // If no data is in the database, populate it with defaults
+                if (projects.length === 0) {
+                    console.log("Database empty. Populating with default data.");
+                    // Use exponential backoff for initialization
+                    setTimeout(() => initializeDefaultProjects(), 500);
+                    projects = defaultProjects; // Use defaults for immediate rendering
+                } else {
+                    // Sort projects by ID (p1, p2, p3, p4) for consistent display order
+                    projects.sort((a, b) => a.id.localeCompare(b.id));
+                }
+                
+                renderProjects(projects);
+            });
+        }
+        
+        // Creates the initial 4 documents in Firestore
+        async function initializeDefaultProjects() {
+            const batch = writeBatch(db);
+            defaultProjects.forEach(project => {
+                const docRef = doc(db, `artifacts/${appId}/users/${userId}/origami_projects`, project.id);
+                batch.set(docRef, project);
+            });
+            await batch.commit();
+        }
+
+        // --- EDITING LOGIC ---
+        function toggleEditMode() {
+            if (!isCreator) return; // Only creator can toggle
+            
+            editMode = !editMode;
+            const btn = document.getElementById('edit-toggle-btn');
+            btn.textContent = editMode ? 'Exit Edit Mode' : 'Edit Content';
+            btn.classList.toggle('bg-red-600', editMode);
+            btn.classList.toggle('bg-primary', !editMode);
+            
+            // Re-render the projects to show/hide input fields.
+            const currentProjects = Array.from(document.querySelectorAll('.project-card')).map(card => {
+                // If switching FROM edit mode, grab the INPUT values
+                if (!editMode) {
+                     return {
+                        id: card.dataset.id,
+                        title: card.querySelector('input[name="title"]').value,
+                        description: card.querySelector('textarea[name="description"]').value,
+                        complexity: card.querySelector('input[name="complexity"]').value,
+                        imageUrl: card.querySelector('input[name="imageUrl"]').value 
+                    };
+                }
+                // If switching TO edit mode (or initially rendering), grab the displayed text
+                return {
+                    id: card.dataset.id,
+                    title: card.querySelector('.project-title')?.textContent || '',
+                    description: card.querySelector('.project-description')?.textContent || '',
+                    imageUrl: card.querySelector('.project-image')?.src || '',
+                    complexity: card.querySelector('.project-complexity')?.textContent || ''
+                };
+            });
+            renderProjects(currentProjects);
+        }
+        
+        async function saveProject(projectId) {
+            if (!isCreator) return; // Only creator can save
+            
+            const card = document.querySelector(`[data-id="${projectId}"]`);
+            if (!card) return;
+
+            const newTitle = card.querySelector(`#title-${projectId}`).value;
+            const newDescription = card.querySelector(`#description-${projectId}`).value;
+            const newImageUrl = card.querySelector(`#imageUrl-${projectId}`).value;
+            const newComplexity = card.querySelector(`#complexity-${projectId}`).value;
+
+            try {
+                const docRef = doc(db, `artifacts/${appId}/users/${userId}/origami_projects`, projectId);
+                await setDoc(docRef, {
+                    id: projectId,
+                    title: newTitle,
+                    description: newDescription,
+                    imageUrl: newImageUrl, // This is now a standard URL
+                    complexity: newComplexity
+                }, { merge: true });
+                
+                // Show confirmation message
+                showMessage("Success! Your content has been saved to the cloud.");
+
+            } catch (e) {
+                console.error("Error saving document: ", e);
+                showMessage("Error saving data. Check console for details.", 'error');
+            }
+        }
+        
+        function showMessage(message, type = 'success') {
+            const msgBox = document.getElementById('message-box');
+            msgBox.textContent = message;
+            msgBox.classList.remove('hidden', 'bg-green-100', 'bg-red-100', 'text-green-800', 'text-red-800');
+            msgBox.classList.add(type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800');
+            setTimeout(() => {
+                msgBox.classList.add('hidden');
+            }, 3000);
+        }
+
+        // --- RENDERING FUNCTION ---
+        function renderProjects(projects) {
+            const grid = document.getElementById('project-grid');
+            grid.innerHTML = projects.map(project => {
+                const directImageUrl = project.imageUrl;
+
+                // Only show edit fields if we are in creator edit mode
+                const showEditFields = isCreator && editMode;
+
+                return `
+                <div class="project-card p-6 rounded-2xl shadow-2xl border border-gray-100 transform hover:shadow-3xl hover:scale-[1.03] transition duration-300 backdrop-blur-sm bg-white/80" data-id="${project.id}">
+                    <div class="h-64 bg-gray-200 rounded-xl mb-4 overflow-hidden flex items-center justify-center border-b border-gray-200">
+                        ${showEditFields ? 
+                            `<input type="text" id="imageUrl-${project.id}" name="imageUrl" value="${project.imageUrl}" placeholder="Paste Image URL here (e.g., https://...)" class="w-full p-2 border border-secondary rounded-lg text-sm text-center">`
+                            : 
+                            // The URL is now a stable public link
+                            `<img src="${directImageUrl}" 
+                                  alt="${project.title}" 
+                                  class="project-image w-full h-full object-cover transition duration-300 hover:opacity-90" 
+                                  onerror="this.onerror=null; this.src='https://placehold.co/600x400/9C89B8/ffffff?text=Image+Load+Error';"
+                            >`
+                        }
+                    </div>
+                    
+                    ${showEditFields ? 
+                        `<input type="text" id="title-${project.id}" name="title" value="${project.title}" class="project-title font-heading text-xl text-primary w-full p-1 border border-secondary rounded-lg mb-2">
+                        <input type="text" id="complexity-${project.id}" name="complexity" value="${project.complexity}" class="project-complexity font-body text-gray-500 text-sm w-full p-1 border border-secondary rounded-lg mb-3">
+                        <textarea id="description-${project.id}" name="description" rows="3" class="project-description font-body text-gray-600 w-full p-2 border border-secondary rounded-lg">${project.description}</textarea>
+                        <button onclick="saveProject('${project.id}')" class="mt-4 w-full bg-green-600 text-white font-bold py-2 rounded-xl hover:bg-green-700 transition duration-150">Save Changes</button>`
+                        : 
+                        `<h3 class="project-title font-heading text-2xl font-semibold text-primary mb-1">${project.title}</h3>
+                        <p class="project-complexity font-body text-secondary text-base font-medium mb-3">${project.complexity}</p>
+                        <p class="project-description font-body text-gray-700 leading-relaxed text-base">${project.description}</p>`
+                    }
+                </div>
+            `;
+            }).join('');
+        }
+
+        // Attach global functions
+        window.saveProject = saveProject;
+        window.toggleEditMode = toggleEditMode;
+
+        // Initialize Firebase when the script loads
+        initFirebase();
+    </script>
+    <script>
+        // Tailwind Configuration
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        // NEW FONT PAIRING - Poppins for headings, Lora for body text
+                        heading: ['Poppins', 'sans-serif'],
+                        body: ['Lora', 'serif'],
+                    },
+                    colors: {
+                        // UPDATED PROFESSIONAL COLOR PALETTE - High contrast, luxury feel
+                        'primary': '#4A2A78', // Deep Royal Purple/Indigo (Rich and upscale)
+                        'secondary': '#D4AF37', // Gold/Brass (Highlight)
+                        'background': '#FFFAF0', // Soft Yellow/Cream Base
+                        'card-bg': 'rgba(255, 255, 255, 0.7)', // Transparent White for cards
+                    },
+                    boxShadow: {
+                        'xl': '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                        '2xl': '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)', // Added stronger shadow
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for smooth scrolling and clean font application */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Lora', serif; /* Default body font */
+            
+            /* --- BRIGHTER, VIBRANT, FLOWER-INSPIRED BACKGROUND PATTERN --- */
+            background-color: #FDF9F3; /* Extremely light, soft beige base */
+            background-image: 
+                /* Repeating radial gradient for a prominent flowery dot pattern */
+                radial-gradient(circle at 0% 0%, #E6C97F 1.2px, transparent 1.2px), /* Softer gold dots */
+                radial-gradient(circle at 100% 100%, #68499B 1.2px, transparent 1.2px); /* Softer purple dots */
+            background-size: 35px 35px; /* Slightly larger size */
+            background-position: 0 0, 17.5px 17.5px; /* Offset for a repeating grid */
+            /* -------------------------------------------------------------------------- */
+        }
+        /* Apply heading font explicitly */
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Make content containers slightly transparent and blurred for premium look */
+        .content-container {
+            background: rgba(255, 255, 255, 0.95); /* Higher opacity for crisper look */
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+        }
+
+        /* Ensure the header and footer are crisp */
+        .sticky-header {
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(4px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        #contact {
+            background-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="message-box" class="fixed top-4 right-4 p-4 rounded-lg shadow-xl text-sm font-body font-medium hidden transition-opacity duration-300 z-50"></div>
+    
+    <header class="sticky top-0 z-10 sticky-header shadow-lg">
+        <nav class="max-w-5xl mx-auto px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#home" class="font-heading text-2xl font-bold text-primary tracking-widest">AYUSH FOLDS</a>
+            <div class="flex space-x-6 items-center">
+                <button id="edit-toggle-btn" 
+                        onclick="toggleEditMode()" 
+                        class="bg-primary text-white font-heading font-medium py-2 px-5 rounded-full shadow-md hover:bg-red-600 transition-colors duration-300 text-sm"
+                        style="display: <%= isCreator ? 'inline-block' : 'none' %>;"
+                >
+                    Edit Content
+                </button>
+                <a href="#work" class="font-heading text-gray-700 hover:text-secondary transition-colors font-medium hidden sm:inline-block">Gallery</a>
+                <a href="#contact" class="font-heading text-gray-700 hover:text-secondary transition-colors font-medium hidden sm:inline-block">Commission</a>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="pt-24 pb-32 text-center max-w-5xl mx-auto px-6 lg:px-8">
+        <div class="p-12 md:p-16 rounded-3xl shadow-3xl border-t-4 border-primary relative overflow-hidden content-container">
+            <p class="font-heading text-lg font-semibold text-secondary mb-3 tracking-widest">FINE ART ORIGAMI</p>
+            <h1 class="font-heading text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                Sculpted in Paper. <br> Crafted for Collectors.
+            </h1>
+            <p class="font-body text-xl text-gray-700 max-w-4xl mx-auto mb-8 leading-relaxed">
+                Discover the world of high-level origami art. Every piece is a unique sculptural journey, created from a single sheet of luxury paper.
+            </p>
+            <a href="#contact" class="inline-block bg-primary text-white font-heading font-bold py-3 px-8 rounded-full shadow-xl hover:bg-primary/90 transition-transform transform hover:scale-[1.02] duration-300 tracking-wide uppercase text-sm">
+                Create Your Bespoke Art Piece
+            </a>
+        </div>
+    </section>
+
+    <section id="work" class="py-24 max-w-5xl mx-auto px-6 lg:px-8">
+        <h2 class="font-heading text-4xl font-bold text-center text-gray-900 mb-4">The Featured Collection</h2>
+        <p class="font-body text-lg text-center text-gray-600 mb-12">Showcasing complexity, realism, and precision folding.</p>
+        
+        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <p class="col-span-1 md:col-span-2 text-center text-gray-500 font-body">Loading your exquisite work...</p>
+        </div>
+
+        <div class="text-center mt-20 pt-10 border-t border-gray-200">
+            <p class="font-body text-lg text-gray-700 mb-4">See the full range of work in detail:</p>
+            <a href="https://instagram.com/ayushfolds" target="_blank" class="inline-flex items-center text-primary hover:text-secondary font-heading font-bold transition-colors text-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+                @ayushfolds (Full Gallery)
+            </a>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+            <h2 class="font-heading text-4xl font-bold text-gray-900 mb-4">Commission a Unique Masterpiece</h2>
+            <p class="font-body text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
+                Begin the journey of creating a truly unique art piece. Every step is handled with professional care and attention to detail.
+            </p>
+
+            <div class="p-10 rounded-2xl shadow-3xl border border-gray-200 content-container">
+                
+                <h3 class="font-heading text-2xl font-semibold text-primary mb-8 border-b pb-4">Our Exclusive Process</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                    
+                    <div class="p-4 border border-secondary/50 rounded-xl shadow-inner bg-secondary/10">
+                        <span class="font-heading text-3xl font-extrabold text-primary block mb-3">1.</span>
+                        <h4 class="font-heading font-semibold text-xl text-gray-800 mb-2">Concept & Scope</h4>
+                        <p class="font-body text-gray-700 text-sm">Email us with your idea, desired dimensions, deadline, and preferred paper type.</p>
+                    </div>
+                    <div class="p-4 border border-secondary/50 rounded-xl shadow-inner bg-secondary/10">
+                        <span class="font-heading text-3xl font-extrabold text-primary block mb-3">2.</span>
+                        <h4 class="font-heading font-semibold text-xl text-gray-800 mb-2">Quote & Design</h4>
+                        <p class="font-body text-gray-700 text-sm">We respond with a detailed quote, timeline, and an initial plan for your approval.</p>
+                    </div>
+                    <div class="p-4 border border-secondary/50 rounded-xl shadow-inner bg-secondary/10">
+                        <span class="font-heading text-3xl font-extrabold text-primary block mb-3">3.</span>
+                        <h4 class="font-heading font-semibold text-xl text-gray-800 mb-2">Creation & Delivery</h4>
+                        <p class="font-body text-gray-700 text-sm">Folding begins! Final payment is made, and your secure, packaged art is shipped with tracking.</p>
+                    </div>
+
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-gray-300">
+                    <p class="font-heading text-2xl font-semibold text-gray-800 mb-4">Direct Inquiry</p>
+                    <a href="mailto:ayumakes0@gmail.com" class="inline-flex items-center bg-primary text-white font-heading font-bold py-3 px-8 rounded-full shadow-xl hover:bg-primary/90 transition-colors duration-300 uppercase text-sm tracking-widest">
+                        ayumakes0@gmail.com
+                    </a>
+                </div>
+                
+                <div class="mt-12">
+                    <p class="font-heading text-2xl font-semibold text-gray-800 mb-4">Buy Ready-Made Art</p>
+                    <a href="https://instagram.com/ayushfolds" target="_blank" class="inline-flex items-center bg-secondary text-gray-900 font-heading font-bold py-3 px-8 rounded-full shadow-xl hover:bg-secondary/80 transition-colors duration-300 uppercase text-sm tracking-widest">
+                        Browse Shop on Instagram
+                    </a>
+                    <p class="font-body text-sm text-gray-500 mt-4">Available pieces are listed in my Instagram bio and story highlights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 py-10">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8 text-center text-gray-400">
+            <p class="font-heading text-sm mb-3">&copy; 2025 Ayush Folds. All rights reserved.</p>
+            <span id="user-id-display" class="block font-body text-xs text-gray-500 mt-1"></span>
+        </div>
+    </footer>
+    <script>
+        // Check for creator status and hide the button if not the creator.
+        document.addEventListener('DOMContentLoaded', () => {
+            const isCreator = !!(typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null);
+            const editButton = document.getElementById('edit-toggle-btn');
+            if (editButton && !isCreator) {
+                editButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
