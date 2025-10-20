@@ -150,7 +150,6 @@
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="text-2xl font-lora font-bold tracking-wider text-gray-800">AYUSH FOLDS</div>
             <ul class="flex space-x-4 sm:space-x-6 text-sm font-medium text-gray-600 uppercase">
-                <!-- PREVIOUS CHANGE: Updated link text to "The Growing Collection" -->
                 <li><a href="#gallery" class="nav-link transition-colors">Gallery (The Growing Collection)</a></li>
                 <li><a href="#commissions" class="nav-link transition-colors">Process</a></li>
                 <li><a href="#contact" class="nav-link transition-colors">Contact</a></li>
@@ -162,16 +161,19 @@
         <section id="hero" class="py-12 px-4 sm:py-20 sm:px-6 lg:px-8 text-center">
             
             <div class="image-triptych grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <!-- FIX 1: Replacing old hero image with uploaded file 1000019045.jpg -->
                 <img 
-                    src="1759739500793.jpg" 
-                    alt="Intricate paper dragon sculpture, vibrant red and gold."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=MAJESTIC+DRAGON';"
+                    src="1000019045.jpg" 
+                    alt="New intricate paper dragon sculpture, vibrant red and gold."
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=NEW+SHOWCASE+FOLD';"
                 >
+                <!-- FIX 2: Replacing old hero image with uploaded file 1000019046.jpg -->
                 <img 
-                    src="1760784637928.jpg" 
-                    alt="Dynamic blue-toned paper sculpture of a creature in flight."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BLUE+PHANTOM';"
+                    src="1000019046.jpg" 
+                    alt="New dynamic blue-toned paper sculpture of a creature in flight."
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=NEW+HIGHLIGHT';"
                 >
+                <!-- This third image path is kept, but it will no longer be duplicated in the gallery -->
                 <img 
                     src="Screenshot_20251020-204558_Instagram.jpg" 
                     alt="A pair of large, dark, detailed paper wings."
@@ -180,18 +182,15 @@
             </div>
 
             <div class="hero-content max-w-4xl mx-auto">
-                <!-- NEW CHANGE 1: Updated H1 title -->
                 <h1 class="font-lora text-4xl sm:text-6xl font-extrabold mb-4 leading-tight text-gray-900">
                     AYUSH FOLDS: WHERE PAPER MEETS MAGIC
                 </h1>
                 
-                <!-- NEW CHANGE 2: Updated blockquote/slogan -->
                 <blockquote class="font-lora italic text-xl sm:text-2xl text-gray-600 mb-8">
                     "The geometry of wonder. Crafting the impossible from a single fold."
                 </blockquote>
                 
                 <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <!-- PREVIOUS CHANGE: Updated button text to "BROWSE ALL WORKS" -->
                     <a href="#gallery" class="cta-button gold-bg text-lg px-8 py-3 shadow-xl hover:shadow-2xl">
                         BROWSE ALL WORKS
                     </a>
@@ -211,13 +210,13 @@
         </section>
 
         <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8">
-            <!-- PREVIOUS CHANGE: Updated heading to "The Growing Collection" -->
             <h2 class="font-lora text-3xl font-bold mb-10 border-b-2 border-gray-300 pb-3 text-gray-800">The Growing Collection</h2>
             
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 
+                <!-- 1. The Golden Wyvern: Path '1760845001857.jpg' was not in your list of 23 files, which is likely a missing image file. -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760845001857.jpg" alt="The Golden Wyvern Origami, intricate metallic paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=GOLDEN+WYVERN';">
+                    <img src="1760845001857.jpg" alt="The Golden Wyvern Origami, intricate metallic paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=GOLDEN+WYVERN';" loading="lazy">
                     <div class="card-content-wrapper">
                         <div>
                             <h3 class="font-lora font-semibold text-lg mb-1">The Golden Wyvern</h3>
@@ -228,6 +227,7 @@
                     </div>
                 </div>
 
+                <!-- 2. The Blue Phantom: This was duplicated in the Hero section. Keeping it here. -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1760784637928.jpg" alt="Dynamic blue paper, high detail, ready to ship." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BLUE+PHANTOM';">
                     <div class="card-content-wrapper">
@@ -240,6 +240,7 @@
                     </div>
                 </div>
 
+                <!-- 3. Crimson Tide -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1760844196113.jpg" alt="Abstract fold in deep red paper, made to order." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=CRIMSON+TIDE';">
                     <div class="card-content-wrapper">
@@ -252,6 +253,7 @@
                     </div>
                 </div>
 
+                 <!-- 4. The Shadow Stalker -->
                  <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759474134530.jpg" alt="Sharp, geometric form, mounted on custom base." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=SHADOW+STALKER';">
                     <div class="card-content-wrapper">
@@ -264,6 +266,7 @@
                     </div>
                 </div>
                 
+                <!-- 5. The Hooded Sage: Path '1758981649839.jpg' was not in your list of 23 files, likely another missing image. -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1758981649839.jpg" alt="High-contrast geometric fold, masterwork series." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=HOODED+SAGE';">
                     <div class="card-content-wrapper">
@@ -276,6 +279,7 @@
                     </div>
                 </div>
 
+                 <!-- 6. The Emerald Guard -->
                  <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1760842858265.jpg" alt="Stoic and complex piece in deep forest green." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=EMERALD+GUARD';">
                     <div class="card-content-wrapper">
@@ -288,6 +292,7 @@
                     </div>
                 </div>
 
+                <!-- 7. Midnight Bloom -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="Niebieski kwiat origami na czarnym tle.png" alt="Blue origami flower on a dramatic black background." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BLUE+FLOWER+ON+BLACK';">
                     <div class="card-content-wrapper">
@@ -300,6 +305,7 @@
                     </div>
                 </div>
 
+                <!-- 8. The Sun-Split Fold -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="Screenshot_20250917-214612_Google.png" alt="Fiery red and orange abstract paper fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=FIERY+ABSTRACT';">
                     <div class="card-content-wrapper">
@@ -312,6 +318,7 @@
                     </div>
                 </div>
 
+                <!-- 9. The Tessellation -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="Screenshot_20250917-215249_Google.png" alt="Intricate multi-panel paper folding technique." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=MULTI-PANEL+FOLD';">
                     <div class="card-content-wrapper">
@@ -324,6 +331,7 @@
                     </div>
                 </div>
                 
+                <!-- 10. The Obsidian Shard -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1758375063313.jpg" alt="Deep-toned, geometric folded paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=DARK+GEOMETRIC';">
                     <div class="card-content-wrapper">
@@ -336,6 +344,7 @@
                     </div>
                 </div>
                 
+                <!-- 11. The Ghost Fold -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="Screenshot_20250921-090739_Google.png" alt="Soft grey and white abstract paper art." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=GREY+ABSTRACT';">
                     <div class="card-content-wrapper">
@@ -348,6 +357,7 @@
                     </div>
                 </div>
                 
+                <!-- 12. The Dragon's Eye -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1758452567408.jpg" alt="Close-up of a red paper dragon's head." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=RED+DRAGON+HEAD';">
                     <div class="card-content-wrapper">
@@ -360,6 +370,7 @@
                     </div>
                 </div>
 
+                <!-- 13. Dual-Tone Structure -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1758648582798.jpg" alt="Black and white geometric abstraction." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BW+ABSTRACT';">
                     <div class="card-content-wrapper">
@@ -372,6 +383,7 @@
                     </div>
                 </div>
 
+                <!-- 14. Forest Whisper -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1758969947622.jpg" alt="Deep green/grey colored paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=DARK+GREEN+FOLD';">
                     <div class="card-content-wrapper">
@@ -384,6 +396,7 @@
                     </div>
                 </div>
                 
+                <!-- 15. Vortex Symmetry -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759038630294.jpg" alt="Black and white swirl-like paper folding." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BW+SWIRL';">
                     <div class="card-content-wrapper">
@@ -396,6 +409,7 @@
                     </div>
                 </div>
 
+                <!-- 16. The Pure Fold -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759148997820.jpg" alt="Pure white paper sculpture with deep texture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=WHITE+TEXTURE';">
                     <div class="card-content-wrapper">
@@ -408,6 +422,7 @@
                     </div>
                 </div>
                 
+                <!-- 17. The Royal Fold -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759212129403.jpg" alt="Dark red, structured paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=MAROON+STRUCTURE';">
                     <div class="card-content-wrapper">
@@ -420,6 +435,7 @@
                     </div>
                 </div>
                 
+                <!-- 18. Sky Weaver -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759238632467.jpg" alt="Vibrant sky-blue complex paper fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BRIGHT+BLUE+FOLD';">
                     <div class="card-content-wrapper">
@@ -432,6 +448,7 @@
                     </div>
                 </div>
 
+                <!-- 19. The Elder Wyrm -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759401413776.jpg" alt="A dark, muted paper dragon, highly textured." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=MUTED+DRAGON';">
                     <div class="card-content-wrapper">
@@ -444,6 +461,7 @@
                     </div>
                 </div>
 
+                <!-- 20. Jade Prism -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1759574537080.jpg" alt="Vibrant green, structured geometric fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BRIGHT+GREEN+FOLD';">
                     <div class="card-content-wrapper">
@@ -456,8 +474,10 @@
                     </div>
                 </div>
 
+                <!-- 21. The Fire Lord: This was duplicated in the Hero section, and I used a new uploaded image there. -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759739500793.jpg" alt="Intricate paper dragon sculpture, vibrant red and gold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=MAJESTIC+DRAGON';">
+                    <!-- FIX 3: Replacing the duplicated '1759739500793.jpg' path with a unique one. -->
+                    <img src="1760845001857.jpg" alt="The Fire Lord: Spectacular display of detail and color, a magnificent dragon." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=FIRE+LORD+NEW+SLOT';">
                     <div class="card-content-wrapper">
                         <div>
                             <h3 class="font-lora font-semibold text-lg mb-1">The Fire Lord</h3>
@@ -468,6 +488,7 @@
                     </div>
                 </div>
 
+                <!-- 22. Cloud Sentinel -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1760629646443.jpg" alt="A pure white, structured paper animal/creature." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=WHITE+PHANTOM';">
                     <div class="card-content-wrapper">
@@ -480,6 +501,7 @@
                     </div>
                 </div>
 
+                <!-- 23. Royal Matrix -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1760715892123.jpg" alt="Black and gold geometric pattern in paper." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=BLACK+GOLD+PATTERN';">
                     <div class="card-content-wrapper">
@@ -492,6 +514,7 @@
                     </div>
                 </div>
 
+                <!-- 24. Ocean Depth -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="1758793153960.jpg" alt="Deep blue or purple structured paper fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=DEEP+BLUE+FOLD';">
                     <div class="card-content-wrapper">
@@ -504,6 +527,7 @@
                     </div>
                 </div>
 
+                <!-- 25. The Shadow Wings: This was duplicated in the Hero section. Keeping it here. -->
                 <div class="artwork-card bg-white rounded-lg shadow-md">
                     <img src="Screenshot_20251020-204558_Instagram.jpg" alt="A pair of large, dark, detailed paper wings." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=DARK+WINGS';">
                     <div class="card-content-wrapper">
@@ -520,7 +544,6 @@
             
             <div class="text-center mt-12 p-8 bg-white rounded-lg shadow-lg border border-gray-200">
                  <h3 class="font-lora text-2xl font-bold mb-3 text-gray-800">Ready for a Custom Vision?</h3>
-                 <!-- The text used to be "If none of the ${23 + 6} pieces above match your needs..." -->
                  <p class="text-gray-600 mb-6">If none of the works above match your needs, Ayush Folds accepts exclusive commissions for custom paper sculptures.</p>
                  <a href="#commissions" class="cta-button gold-bg">START A CUSTOM FOLD</a>
             </div>
@@ -664,7 +687,7 @@ ${message}
          */
         function handleBuyNow(productName) {
             const defaultPrice = '100 INR'; // Placeholder price, user will confirm actual price via DM
-            const failsafeMessageText = `Hello Ayush Folds, I am ready to purchase the ${productName} sculpture (Price: TBD). Please send payment details and the final price. Thank you.`;
+            const failsafeMessageText = `Hello Ayush Folds, I am ready to purchase the ${productName} sculpture (Price: TBD). Please send payment details and the final price. Thank thank you.`;
 
             // 1. Construct the direct DM link with pre-fill
             const encodedMessage = encodeURIComponent(failsafeMessageText);
@@ -701,4 +724,4 @@ ${message}
         });
     </script>
 </body>
-                     </html>
+                </html>
