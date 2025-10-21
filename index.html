@@ -161,8 +161,7 @@
         <section id="hero" class="py-12 px-4 sm:py-20 sm:px-6 lg:px-8 text-center">
             
             <div id="hero-triptych" class="image-triptych grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                <!-- Hero images will be injected here by JavaScript -->
-            </div>
+                </div>
 
             <div class="hero-content max-w-4xl mx-auto">
                 <h1 class="font-lora text-4xl sm:text-6xl font-extrabold mb-4 leading-tight text-gray-900">
@@ -196,8 +195,7 @@
             <h2 class="font-lora text-3xl font-bold mb-10 border-b-2 border-gray-300 pb-3 text-gray-800">The Growing Collection</h2>
             
             <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                <!-- Gallery items will be injected here by JavaScript -->
-            </div>
+                </div>
             
             <div class="text-center mt-12 p-8 bg-white rounded-lg shadow-lg border border-gray-200">
                  <h3 class="font-lora text-2xl font-bold mb-3 text-gray-800">Ready for a Custom Vision?</h3>
@@ -281,115 +279,134 @@
     </footer>
 
     <script>
-        // CRITICAL FIX: Mapping the original filenames to the contentFetchId required by the environment
-        const IMAGE_ID_MAP = {
-            "1000019075.jpg": "uploaded:1000019075.jpg-22d1d32f-77d3-47d4-ad35-bb03a0797e55",
-            "1000019077.jpg": "uploaded:1000019077.jpg-30a17b61-904c-46f3-ba62-34ec43af7f81",
-            "1000019078.jpg": "uploaded:1000019078.jpg-8d2063b4-d532-4dff-98bc-688f7afd5290",
-            "1000019076.jpg": "uploaded:1000019076.jpg-af3afb67-eae2-4e5b-a091-86583f01f7fe",
-            "1000019081.jpg": "uploaded:1000019081.jpg-a387dc0e-ea5c-4eb8-ab74-18113e790b93",
-            "1000019079.jpg": "uploaded:1000019079.jpg-ce500917-31d1-406a-9937-33770d6556c1",
-            "1000019082.jpg": "uploaded:1000019082.jpg-23317882-5fc3-476e-bab2-e798b8df3dd0",
-            "1000019080.jpg": "uploaded:1000019080.jpg-00edc749-2aec-4770-a037-cc99f1753d0d",
-            "1000019084.jpg": "uploaded:1000019084.jpg-8bc7f6f3-5e10-46f8-8102-4fa710ca7a9d",
-            "1000019083.jpg": "uploaded:1000019083.jpg-32ba10b0-5bad-497f-8dad-5c3c719265e6"
-        };
-
-        // Helper function to resolve the correct path for a filename
-        function resolveImagePath(filename) {
-            // Check if it's one of the uploaded files and use its content ID
-            if (IMAGE_ID_MAP[filename]) {
-                return IMAGE_ID_MAP[filename];
-            }
-            // If it's a placeholder image (which is an absolute URL), return as is
-            return filename; 
-        }
-
-        // Data Array: Each object is one piece of art, ensuring the image, title, and description are forever linked.
+        // Data Array: This array powers the product gallery.
+        // NOTE: The 'image' path assumes the file is in the same folder as this HTML file.
         const galleryData = [
+            // --- YOUR NEW PRODUCTS START HERE ---
+            { 
+                title: "Shadow Bloom", 
+                image: "Niebieski kwiat origami na czarnym tle.png", 
+                description: "A high-contrast masterpiece: a delicate blue origami flower against a deep black background. Perfect for modern, sophisticated decor. **Limited stock!**" 
+            },
             { 
                 title: "The Golden Wyvern", 
-                image: "1000019075.jpg", 
-                description: "Its metallic sheen captures light dramatically, making it an instant centerpiece that signals sophistication. **Invest in a touch of luxury!**" 
+                image: "1758375063313.jpg", 
+                description: "An intricate, scaled beast folded from shimmering gold paper, symbolizing power and majesty. **A breathtaking centerpiece!**" 
             },
             { 
-                title: "The Blue Phantom", 
-                image: "1000019083.jpg",
-                description: "The complex, flying form creates powerful shadows, transforming paper into a breathtaking expression of dynamic energy. **Grab this unique piece before it flies away!**" 
+                title: "The Copper Serpent", 
+                image: "1758452567408.jpg",
+                description: "A stunning abstract geometric form in a rich, aged copper tone. Captures light and shadow beautifully. **Perfect for a minimalist office.**" 
             },
             { 
-                title: "Crimson Tide", 
-                image: "1000019076.jpg", 
-                description: "The deep, rich crimson is a symbol of energy and passion, perfect for inspiring creativity in a personal workspace. **Ignite your space with this fiery art!**" 
+                title: "Crimson Tide Geometry", 
+                image: "1758648582798.jpg", 
+                description: "Deep crimson tessellation. Its complex folds draw the eye into a mesmerizing, endless pattern. **Ignite your space with passion!**" 
             },
             { 
-                title: "The Shadow Stalker", 
-                image: "1000019084.jpg", 
-                description: "Its sharp, geometric lines beautifully complement modern and industrial design themes. **A conversation piece built on precision. Secure yours now!**" 
+                title: "Forest Guard", 
+                image: "1758793153960.jpg", 
+                description: "A textured fold in a deep forest green, evoking natural growth and quiet strength. **Bring a sense of calm to your home.**" 
             },
             { 
-                title: "The Hooded Sage", 
-                image: "1000019077.jpg", 
-                description: "This masterwork of geometric folding offers a timeless, stoic presence that instantly elevates any art collection. **Elevate your space with this quiet masterpiece!**" 
+                title: "Sun-Split Fragment", 
+                image: "1758969947622.jpg", 
+                description: "A bright, multi-hued fold that captures the intensity and warmth of a midday sun. **Add a splash of vibrant color!**" 
             },
             { 
-                title: "The Emerald Guard", 
-                image: "1000019078.jpg", 
-                description: "Use the serene, deep emerald tone to introduce a calming, organic texture and color into your interior space. **A piece of tranquility you must own!**" 
+                title: "The White Heron", 
+                image: "1759038630294.jpg", 
+                description: "Elegant and pure. A masterwork of texture and negative space in crisp, white paper. **The ultimate minimalist statement.**" 
             },
             { 
-                title: "Midnight Bloom", 
-                image: "1000019079.jpg", 
-                description: "This exquisite blue flower on black is a statement piece for modern, high-contrast decor. **A true collector's contrast. Buy it now!**" 
+                title: "Obsidian Shard Panel", 
+                image: "1759148997820.jpg", 
+                description: "Dark, moody, and sharp. This geometric piece adds a powerful, sophisticated edge to any wall. **A bold statement piece!**" 
             },
             { 
-                title: "The Sun-Split Fold", 
-                image: "1000019080.jpg", 
-                description: "Captures the intensity of a sunset. This geometric piece adds warmth and vibrant structure to any space. **Add this splash of color to your home!**" 
+                title: "Aqua Weave", 
+                image: "1759212129403.jpg", 
+                description: "A vibrant blue-green paper woven into a captivating, complex texture. **Evokes clear ocean depths.**" 
             },
             { 
-                title: "The Tessellation", 
-                image: "1000019081.jpg", 
-                description: "A marvel of mathematical precision. The repeating pattern draws the eye and calms the mind. **Own the geometry of calm. Order today!**" 
+                title: "Sunset Pyramid", 
+                image: "1759238632467.jpg", 
+                description: "Warm orange and yellow tones meet sharp geometric structure, like a desert sunset. **Brings warmth and geometry to your space.**" 
             },
             { 
-                title: "The Obsidian Shard", 
-                image: "1000019082.jpg", 
-                description: "Its dark hue and sharp lines offer a minimalist yet powerful statement. Perfect for a sophisticated office or study. **Bring this bold statement home!**" 
-            },
-            // Adding a few more items to fill out the grid nicely (using placeholders, as before)
-            { 
-                title: "Forest Whisper", 
-                image: "https://placehold.co/600x400/388e3c/ffffff?text=FOREST+WHISPER", 
-                description: "The deep, muted green brings a sense of grounded nature and calm to your home or office. **A calming presence for any busy space. Order now!**" 
+                title: "The Royal Blue Fold", 
+                image: "1759401413776.jpg", 
+                description: "A striking royal blue color folded into a complex, angular design. **A truly regal addition to any collection.**" 
             },
             { 
-                title: "Vortex Symmetry", 
-                image: "https://placehold.co/600x400/303030/eeeeee?text=VORTEX+SYMMETRY", 
-                description: "A mesmerizing, spiraling design that perfectly demonstrates the power of pattern and repetition. **Capture motion in a static form. Don't miss this!**" 
+                title: "Silver Dragon Scale", 
+                image: "1759474134530.jpg", 
+                description: "Intricate, small-scale folding that mimics the texture of silver dragon scales. **Incredible detail in miniature!**" 
             },
             { 
-                title: "The Pure Fold", 
-                image: "https://placehold.co/600x400/E0E0E0/303030?text=THE+PURE+FOLD", 
-                description: "Texture and shadow are the focus here. A masterpiece that requires perfect lighting to reveal its depth. **The ultimate neutral statement piece. Get it now!**" 
+                title: "Jade Symmetry", 
+                image: "1759574537080.jpg", 
+                description: "A calming jade green used to create a balanced, symmetric design. **A perfect piece for meditation or study areas.**" 
             },
             { 
-                title: "The Royal Fold", 
-                image: "https://placehold.co/600x400/9C27B0/ffffff?text=THE+ROYAL+FOLD", 
-                description: "The rich maroon color gives this structured piece a regal and authoritative presence. **A perfect gift for a respected colleague or loved one!**" 
+                title: "Deep Sea Creature", 
+                image: "1759739500793.jpg", 
+                description: "A dark, mysterious blue fold that suggests an organic form found in the ocean's deep trenches. **Intriguing and unique.**" 
             },
             { 
-                title: "Sky Weaver", 
-                image: "https://placehold.co/600x400/03A9F4/ffffff?text=SKY+WEAVER", 
-                description: "The brilliant blue tone instantly brightens a room, evoking clear skies and boundless creativity. **Bring the energy of the sky indoors!**" 
+                title: "Ember Weave", 
+                image: "1760629646443.jpg", 
+                description: "Fiery reds and oranges woven together in a beautiful, textured pattern. **Like fire captured in paper.**" 
             },
+            { 
+                title: "The Pure Grid", 
+                image: "1760715892123.jpg", 
+                description: "A pristine white geometric grid, emphasizing the purity of the fold and the play of light. **Highlights your lighting design.**" 
+            },
+            { 
+                title: "Cobalt Phantom", 
+                image: "1760784637928.jpg", 
+                description: "A dynamic, angular form in a bright cobalt blue. Looks like a creature caught in mid-flight. **A truly dynamic piece of art.**" 
+            },
+            { 
+                title: "Monochrome Study", 
+                image: "1760842858265.jpg", 
+                description: "A simple, yet profound black and white fold that focuses entirely on shadow and depth. **Essential for the minimalist collector.**" 
+            },
+            { 
+                title: "Charcoal Texture", 
+                image: "1760844196113.jpg", 
+                description: "A deeply textured fold in charcoal gray, offering a rugged, architectural feel. **Brings an industrial edge to paper art.**" 
+            },
+            { 
+                title: "The Instagram Star", 
+                image: "Screenshot_20251020-204558_Instagram.jpg", 
+                description: "The piece that went viral! A beautifully captured fold with stunning lighting. **Own a piece of internet fame!**" 
+            },
+            { 
+                title: "Geometric Pattern 1", 
+                image: "Screenshot_20250917-214612_Google.png", 
+                description: "A complex, repeating pattern demonstrating mathematical precision in paper." 
+            },
+            { 
+                title: "Abstract Fold 2", 
+                image: "Screenshot_20250917-215249_Google.png", 
+                description: "An abstract, intricate fold playing with texture and scale." 
+            },
+            { 
+                title: "Dynamic Form 3", 
+                image: "Screenshot_20250921-090739_Google.png", 
+                description: "A fold with a dynamic, flying shape and sharp angular details." 
+            },
+            // The image IDs below are for hero section placeholders and are kept for script integrity.
+            // These placeholders are inside the renderHeroImages function.
         ];
 
         // Function to shuffle an array (Fisher-Yates)
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[i-1]] = [array[i-1], array[i]];
+                [array[i], array[j]] = [array[j], array[i]];
             }
         }
 
@@ -398,20 +415,28 @@
             const heroContainer = document.getElementById('hero-triptych');
             if (!heroContainer) return;
 
-            const heroFilenames = ["1000019079.jpg", "1000019080.jpg", "1000019084.jpg"];
-            const heroAlts = [
-                "Intricate paper dragon sculpture, vibrant red and gold.",
-                "Dynamic blue-toned paper sculpture of a creature in flight.",
-                "A pair of large, dark, detailed paper wings."
+            // Using direct Content IDs for hero images
+            const heroImages = [
+                {
+                    src: "Niebieski kwiat origami na czarnym tle.png",
+                    alt: "Intricate blue origami flower on black."
+                },
+                {
+                    src: "1758375063313.jpg",
+                    alt: "Dynamic gold origami wyvern sculpture."
+                },
+                {
+                    src: "1759148997820.jpg",
+                    alt: "A pair of large, dark, detailed paper wings."
+                }
             ];
 
             let heroHtml = '';
-            heroFilenames.forEach((filename, index) => {
-                const path = resolveImagePath(filename);
+            heroImages.forEach((img) => {
                 heroHtml += `
                     <img 
-                        src="${path}" 
-                        alt="${heroAlts[index]}"
+                        src="${img.src}" 
+                        alt="${img.alt}"
                         onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=FOLD+IMAGE+LOAD+ERROR';"
                     >
                 `;
@@ -431,13 +456,12 @@
 
             galleryData.forEach(item => {
                 const altText = item.title + " origami sculpture, handcrafted paper art.";
-                const path = resolveImagePath(item.image);
                 const fallbackImage = `https://placehold.co/600x400/CCCCCC/333333?text=${encodeURIComponent(item.title.toUpperCase())}`;
 
                 galleryHtml += `
                     <div class="artwork-card bg-white rounded-lg shadow-md">
                         <img 
-                            src="${path}" 
+                            src="${item.image}" 
                             alt="${altText}" 
                             class="w-full h-48 object-cover rounded-t-lg" 
                             loading="lazy" 
@@ -517,4 +541,4 @@
         });
     </script>
 </body>
-                    </html>
+</html>
