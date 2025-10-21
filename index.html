@@ -160,23 +160,8 @@
     <main class="max-w-7xl mx-auto">
         <section id="hero" class="py-12 px-4 sm:py-20 sm:px-6 lg:px-8 text-center">
             
-            <div class="image-triptych grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                <!-- Using your uploaded images for the hero section to ensure they display -->
-                <img 
-                    src="1000019079.jpg" 
-                    alt="Intricate paper dragon sculpture, vibrant red and gold."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=NEW+SHOWCASE+FOLD';"
-                >
-                <img 
-                    src="1000019080.jpg" 
-                    alt="Dynamic blue-toned paper sculpture of a creature in flight."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=NEW+HIGHLIGHT';"
-                >
-                <img 
-                    src="1000019084.jpg" 
-                    alt="A pair of large, dark, detailed paper wings."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=DARK+WINGS';"
-                >
+            <div id="hero-triptych" class="image-triptych grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <!-- Hero images will be injected here by JavaScript -->
             </div>
 
             <div class="hero-content max-w-4xl mx-auto">
@@ -210,7 +195,6 @@
         <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8">
             <h2 class="font-lora text-3xl font-bold mb-10 border-b-2 border-gray-300 pb-3 text-gray-800">The Growing Collection</h2>
             
-            <!-- **CRITICAL CHANGE**: The Gallery content is now rendered dynamically by JavaScript -->
             <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
                 <!-- Gallery items will be injected here by JavaScript -->
             </div>
@@ -297,87 +281,83 @@
     </footer>
 
     <script>
+        // CRITICAL FIX: Mapping the original filenames to the contentFetchId required by the environment
+        const IMAGE_ID_MAP = {
+            "1000019075.jpg": "uploaded:1000019075.jpg-22d1d32f-77d3-47d4-ad35-bb03a0797e55",
+            "1000019077.jpg": "uploaded:1000019077.jpg-30a17b61-904c-46f3-ba62-34ec43af7f81",
+            "1000019078.jpg": "uploaded:1000019078.jpg-8d2063b4-d532-4dff-98bc-688f7afd5290",
+            "1000019076.jpg": "uploaded:1000019076.jpg-af3afb67-eae2-4e5b-a091-86583f01f7fe",
+            "1000019081.jpg": "uploaded:1000019081.jpg-a387dc0e-ea5c-4eb8-ab74-18113e790b93",
+            "1000019079.jpg": "uploaded:1000019079.jpg-ce500917-31d1-406a-9937-33770d6556c1",
+            "1000019082.jpg": "uploaded:1000019082.jpg-23317882-5fc3-476e-bab2-e798b8df3dd0",
+            "1000019080.jpg": "uploaded:1000019080.jpg-00edc749-2aec-4770-a037-cc99f1753d0d",
+            "1000019084.jpg": "uploaded:1000019084.jpg-8bc7f6f3-5e10-46f8-8102-4fa710ca7a9d",
+            "1000019083.jpg": "uploaded:1000019083.jpg-32ba10b0-5bad-497f-8dad-5c3c719265e6"
+        };
+
+        // Helper function to resolve the correct path for a filename
+        function resolveImagePath(filename) {
+            // Check if it's one of the uploaded files and use its content ID
+            if (IMAGE_ID_MAP[filename]) {
+                return IMAGE_ID_MAP[filename];
+            }
+            // If it's a placeholder image (which is an absolute URL), return as is
+            return filename; 
+        }
+
         // Data Array: Each object is one piece of art, ensuring the image, title, and description are forever linked.
         const galleryData = [
-            // The Golden Wyvern: Using the blue metallic star-like fold from 1000019075.jpg
             { 
                 title: "The Golden Wyvern", 
                 image: "1000019075.jpg", 
                 description: "Its metallic sheen captures light dramatically, making it an instant centerpiece that signals sophistication. **Invest in a touch of luxury!**" 
             },
-            // The Blue Phantom: Using the yellow violin/statue-like fold from 1000019075.jpg (needs a unique crop/file)
             { 
                 title: "The Blue Phantom", 
-                image: "1000019083.jpg", // Using a unique, available image for placeholder
+                image: "1000019083.jpg",
                 description: "The complex, flying form creates powerful shadows, transforming paper into a breathtaking expression of dynamic energy. **Grab this unique piece before it flies away!**" 
             },
-            // Crimson Tide: Using the pink origami crane from 1000019076.jpg
             { 
                 title: "Crimson Tide", 
                 image: "1000019076.jpg", 
                 description: "The deep, rich crimson is a symbol of energy and passion, perfect for inspiring creativity in a personal workspace. **Ignite your space with this fiery art!**" 
             },
-            // The Shadow Stalker: Using the yellow winged creature/horse from 1000019084.jpg
             { 
                 title: "The Shadow Stalker", 
                 image: "1000019084.jpg", 
                 description: "Its sharp, geometric lines beautifully complement modern and industrial design themes. **A conversation piece built on precision. Secure yours now!**" 
             },
-            // The Hooded Sage: Using the small orange-yellow dragon from 1000019077.jpg
             { 
                 title: "The Hooded Sage", 
                 image: "1000019077.jpg", 
                 description: "This masterwork of geometric folding offers a timeless, stoic presence that instantly elevates any art collection. **Elevate your space with this quiet masterpiece!**" 
             },
-            // The Emerald Guard: Using the small pink flower from 1000019078.jpg
             { 
                 title: "The Emerald Guard", 
                 image: "1000019078.jpg", 
                 description: "Use the serene, deep emerald tone to introduce a calming, organic texture and color into your interior space. **A piece of tranquility you must own!**" 
             },
-            // Midnight Bloom: Using the blue star flower on a black background from 1000019079.jpg
             { 
                 title: "Midnight Bloom", 
                 image: "1000019079.jpg", 
                 description: "This exquisite blue flower on black is a statement piece for modern, high-contrast decor. **A true collector's contrast. Buy it now!**" 
             },
-            // The Sun-Split Fold: Using the small brown butterflies from 1000019080.jpg
             { 
                 title: "The Sun-Split Fold", 
                 image: "1000019080.jpg", 
                 description: "Captures the intensity of a sunset. This geometric piece adds warmth and vibrant structure to any space. **Add this splash of color to your home!**" 
             },
-            // The Tessellation: Using the yellow geometric fold on a brown box from 1000019081.jpg
             { 
                 title: "The Tessellation", 
                 image: "1000019081.jpg", 
                 description: "A marvel of mathematical precision. The repeating pattern draws the eye and calms the mind. **Own the geometry of calm. Order today!**" 
             },
-            // The Obsidian Shard: Using the tall, light-brown paper figurine from 1000019082.jpg
             { 
                 title: "The Obsidian Shard", 
                 image: "1000019082.jpg", 
                 description: "Its dark hue and sharp lines offer a minimalist yet powerful statement. Perfect for a sophisticated office or study. **Bring this bold statement home!**" 
             },
-            // The Ghost Fold: Using the green squirrel-like fold from 1000019082.jpg
-            { 
-                title: "The Ghost Fold", 
-                image: "1000019082.jpg", 
-                description: "A subtle, monochromatic piece that relies on light and shadow for its beauty. The ultimate complement to any wall art. **Subtle elegance is always in style. Shop now!**" 
-            },
-            // The Dragon's Eye: Using the orange deer-like fold from 1000019083.jpg
-            { 
-                title: "The Dragon's Eye", 
-                image: "1000019083.jpg", 
-                description: "An intensely detailed piece of a dragon's face, symbolizing strength and good fortune. **Unleash the power of the Dragon in your collection!**" 
-            },
-            // Dual-Tone Structure: Using the light blue tent-like fold from 1000019084.jpg
-            { 
-                title: "Dual-Tone Structure", 
-                image: "1000019084.jpg", 
-                description: "The perfect intersection of dark and light, this piece emphasizes form and negative space. **The ideal piece for a minimalist aesthetic!**" 
-            },
-            // Adding a few more items to fill out the grid nicely
+            // Adding a few more items to fill out the grid nicely (using placeholders, as before)
             { 
                 title: "Forest Whisper", 
                 image: "https://placehold.co/600x400/388e3c/ffffff?text=FOREST+WHISPER", 
@@ -413,6 +393,32 @@
             }
         }
 
+        // Function to render the hero images
+        function renderHeroImages() {
+            const heroContainer = document.getElementById('hero-triptych');
+            if (!heroContainer) return;
+
+            const heroFilenames = ["1000019079.jpg", "1000019080.jpg", "1000019084.jpg"];
+            const heroAlts = [
+                "Intricate paper dragon sculpture, vibrant red and gold.",
+                "Dynamic blue-toned paper sculpture of a creature in flight.",
+                "A pair of large, dark, detailed paper wings."
+            ];
+
+            let heroHtml = '';
+            heroFilenames.forEach((filename, index) => {
+                const path = resolveImagePath(filename);
+                heroHtml += `
+                    <img 
+                        src="${path}" 
+                        alt="${heroAlts[index]}"
+                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=FOLD+IMAGE+LOAD+ERROR';"
+                    >
+                `;
+            });
+            heroContainer.innerHTML = heroHtml;
+        }
+
         // Function to render the gallery dynamically
         function renderGallery() {
             const container = document.getElementById('gallery-container');
@@ -425,12 +431,13 @@
 
             galleryData.forEach(item => {
                 const altText = item.title + " origami sculpture, handcrafted paper art.";
+                const path = resolveImagePath(item.image);
                 const fallbackImage = `https://placehold.co/600x400/CCCCCC/333333?text=${encodeURIComponent(item.title.toUpperCase())}`;
 
                 galleryHtml += `
                     <div class="artwork-card bg-white rounded-lg shadow-md">
                         <img 
-                            src="${item.image}" 
+                            src="${path}" 
                             alt="${altText}" 
                             class="w-full h-48 object-cover rounded-t-lg" 
                             loading="lazy" 
@@ -504,7 +511,10 @@
         }
 
         // Run the rendering function when the page loads
-        document.addEventListener('DOMContentLoaded', renderGallery);
+        document.addEventListener('DOMContentLoaded', () => {
+            renderHeroImages();
+            renderGallery();
+        });
     </script>
 </body>
-            </html>
+                    </html>
