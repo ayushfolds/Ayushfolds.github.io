@@ -10,7 +10,7 @@
     <style>
         /* Custom Variables and Global Styles */
         :root {
-            /* Goldish/Professional Colors */
+            /* **CHANGE 1: Goldish/Professional Colors** */
             --color-bg: #FCF9F5; /* Soft Cream/Off-White for body */
             --color-gradient-start: #FEFAE6; /* Lighter Cream/Gold tone */
             --color-gradient-end: #F8F4E6;   /* Deeper Cream/Gold tone */
@@ -24,7 +24,7 @@
         body {
             font-family: var(--font-body);
             color: var(--color-text);
-            /* New Goldish Background Gradient */
+            /* **CHANGE 1: New Goldish Background Gradient** */
             background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
             scroll-behavior: smooth;
         }
@@ -126,7 +126,6 @@
 </head>
 <body class="antialiased">
 
-    <!-- Modal for Instructions -->
     <div id="instructionModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-75 flex justify-center items-center p-4" onclick="document.getElementById('instructionModal').classList.add('hidden')">
         <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full text-center" onclick="event.stopPropagation()">
             <h3 class="font-lora text-2xl font-bold text-gray-800 mb-3">Almost There!</h3>
@@ -146,9 +145,7 @@
             <p class="text-xs text-gray-400 mt-3">Click anywhere outside the box to close.</p>
         </div>
     </div>
-    <!-- End Modal -->
 
-    <!-- Header & Navigation -->
     <header class="bg-white/90 sticky top-0 z-10 shadow-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="text-2xl font-lora font-bold tracking-wider text-gray-800">AYUSH FOLDS</div>
@@ -161,26 +158,24 @@
     </header>
 
     <main class="max-w-7xl mx-auto">
-        
-        <!-- Hero Section -->
         <section id="hero" class="py-12 px-4 sm:py-20 sm:px-6 lg:px-8 text-center">
             
-            <!-- Hero Image Triptych (Using updated paths from user's submission) -->
             <div class="image-triptych grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <!-- Using your uploaded images for the hero section to ensure they display -->
                 <img 
-                    src="1759739500793.jpg" 
-                    alt="New intricate paper dragon sculpture, vibrant red and gold."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/8B5E3C/ffffff?text=VIBRANT+DRAGON+FOLD';"
+                    src="1000019079.jpg" 
+                    alt="Intricate paper dragon sculpture, vibrant red and gold."
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=NEW+SHOWCASE+FOLD';"
                 >
                 <img 
-                    src="1760784637928.jpg" 
-                    alt="New dynamic blue-toned paper sculpture of a creature in flight."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/8B5E3C/ffffff?text=DYNAMIC+BLUE+CREATURE';"
+                    src="1000019080.jpg" 
+                    alt="Dynamic blue-toned paper sculpture of a creature in flight."
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=NEW+HIGHLIGHT';"
                 >
                 <img 
-                    src="Screenshot_20251020-204558_Instagram.jpg" 
+                    src="1000019084.jpg" 
                     alt="A pair of large, dark, detailed paper wings."
-                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/8B5E3C/ffffff?text=DARK+WINGS+SCULPTURE';"
+                    onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=DARK+WINGS';"
                 >
             </div>
 
@@ -212,338 +207,13 @@
             </div>
         </section>
 
-        <!-- Product Gallery Section -->
         <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8">
             <h2 class="font-lora text-3xl font-bold mb-10 border-b-2 border-gray-300 pb-3 text-gray-800">The Growing Collection</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                
-                <!-- 1. The Golden Wyvern -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760845001857.jpg" alt="The Golden Wyvern Origami, intricate metallic paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFD700/000000?text=GOLDEN+WYVERN+DRAGON';" loading="lazy">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Golden Wyvern</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Its metallic sheen captures light dramatically, making it a sophisticated centerpiece. A luxurious fold.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Golden Wyvern')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 2. The Blue Phantom -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760784637928.jpg" alt="Dynamic blue paper, high detail, ready to ship." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/4B77BE/ffffff?text=BLUE+PHANTOM+CREATURE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Blue Phantom</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">A complex, flying form that creates powerful shadows, transforming paper into a breathtaking expression of dynamic energy.</p>
-                             <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Blue Phantom')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 3. Crimson Tide -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760844196113.jpg" alt="Abstract fold in deep red paper, made to order." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/CC0000/ffffff?text=CRIMSON+ABSTRACT+FOLD';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Crimson Tide</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The deep, rich crimson is a symbol of energy and passion, perfect for inspiring creativity in a personal workspace.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Crimson Tide')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                 <!-- 4. The Shadow Stalker -->
-                 <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759474134530.jpg" alt="Sharp, geometric form, mounted on custom base." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/333333/ffffff?text=SHADOW+STALKER+GEOMETRIC';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Shadow Stalker</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Sharp, geometric lines beautifully complement modern and industrial design themes. Precision folding.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Shadow Stalker')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 5. The Hooded Sage - Corrected path for Hooded Sage -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1758981649839.jpg" alt="High-contrast geometric fold, masterwork series." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/888888/ffffff?text=HOODED+SAGE+MASTERWORK';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Hooded Sage</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">This masterwork of geometric folding offers a timeless, stoic presence that instantly elevates any art collection.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Hooded Sage')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                 <!-- 6. The Emerald Guard -->
-                 <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760842858265.jpg" alt="Stoic and complex piece in deep forest green." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/006400/ffffff?text=EMERALD+GUARD+GEOMETRIC';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Emerald Guard</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Use the serene, deep emerald tone to introduce a calming, organic texture and color into your interior space.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Emerald Guard')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 7. Midnight Bloom -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="Niebieski kwiat origami na czarnym tle.png" alt="Blue origami flower on a dramatic black background." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/1E90FF/000000?text=MIDNIGHT+BLUE+FLOWER';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Midnight Bloom</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">This exquisite blue flower on black is a statement piece for modern, high-contrast decor.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Midnight Bloom')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 8. The Sun-Split Fold -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="Screenshot_20250917-214612_Google.jpg" alt="Fiery red and orange abstract paper fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF4500/ffffff?text=FIERY+SUNSET+FOLD';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Sun-Split Fold</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Captures the intensity of a sunset. This geometric piece adds warmth and vibrant structure to any space.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Sun-Split Fold')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 9. The Tessellation -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="Screenshot_20250917-215249_Google.jpg" alt="Intricate multi-panel paper folding technique." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/A9A9A9/ffffff?text=TESSELLATION+PATTERN';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Tessellation</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">A marvel of mathematical precision. The repeating pattern draws the eye and calms the mind.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Tessellation')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 10. The Obsidian Shard -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1758375063313.jpg" alt="Deep-toned, geometric folded paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/111111/ffffff?text=OBSIDIAN+SHARD+DARK';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Obsidian Shard</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Its dark hue and sharp lines offer a minimalist yet powerful statement. Perfect for a sophisticated office or study.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Obsidian Shard')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 11. The Ghost Fold -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="Screenshot_20250921-090739_Google.jpg" alt="Soft grey and white abstract paper art." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/E0E0E0/000000?text=GHOST+FOLD+MONOCHROME';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Ghost Fold</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">A subtle, monochromatic piece that relies on light and shadow for its beauty. The ultimate complement to any wall art.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Ghost Fold')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 12. The Dragon's Eye -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1758452567408.jpg" alt="Close-up of a red paper dragon's head." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/8B0000/ffffff?text=RED+DRAGON+HEAD+DETAIL';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Dragon's Eye</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">An intensely detailed piece of a dragon's face, symbolizing strength and good fortune.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Dragon\'s Eye')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 13. Dual-Tone Structure -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1758648582798.jpg" alt="Black and white geometric abstraction." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/000000/ffffff?text=DUAL+TONE+GEOMETRIC';" loading="lazy">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Dual-Tone Structure</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The perfect intersection of dark and light, this piece emphasizes form and negative space.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Dual-Tone Structure')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 14. Forest Whisper -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1758969947622.jpg" alt="Deep green/grey colored paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/4F7942/ffffff?text=FOREST+WHISPER+GREEN';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Forest Whisper</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The deep, muted green brings a sense of grounded nature and calm to your home or office.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Forest Whisper')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 15. Vortex Symmetry -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759038630294.jpg" alt="Black and white swirl-like paper folding." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/A9A9A9/000000?text=VORTEX+SWIRL+PATTERN';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Vortex Symmetry</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">A mesmerizing, spiraling design that perfectly demonstrates the power of pattern and repetition.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Vortex Symmetry')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 16. The Pure Fold -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759148997820.jpg" alt="Pure white paper sculpture with deep texture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/F5F5F5/000000?text=PURE+WHITE+TEXTURE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Pure Fold</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Texture and shadow are the focus here. A masterpiece that requires perfect lighting to reveal its depth.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Pure Fold')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 17. The Royal Fold -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759212129403.jpg" alt="Dark red, structured paper sculpture." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/800000/ffffff?text=ROYAL+MAROON+STRUCTURE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Royal Fold</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The rich maroon color gives this structured piece a regal and authoritative presence.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Royal Fold')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-                
-                <!-- 18. Sky Weaver -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759238632467.jpg" alt="Vibrant sky-blue complex paper fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/00BFFF/ffffff?text=SKY+WEAVER+BLUE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Sky Weaver</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The brilliant blue tone instantly brightens a room, evoking clear skies and boundless creativity.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Sky Weaver')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 19. The Elder Wyrm -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759401413776.jpg" alt="A dark, muted paper dragon, highly textured." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/444444/ffffff?text=ELDER+WYRM+MUTED+DRAGON';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Elder Wyrm</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Unlike its vibrant cousins, this muted dragon has a weathered, ancient feel. A deep, powerful conversation starter.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Elder Wyrm')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 20. Jade Prism -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759574537080.jpg" alt="Vibrant green, structured geometric fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/00A86B/ffffff?text=JADE+PRISM+BRIGHT+GREEN';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Jade Prism</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The sharp folds and energetic green color create a futuristic and vibrant aesthetic.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Jade Prism')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 21. The Fire Lord - Corrected to unique path 1759739500793.jpg -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1759739500793.jpg" alt="The Fire Lord: Spectacular display of detail and color, a magnificent dragon." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FF4500/ffffff?text=FIRE+LORD+DRAGON+RED';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Fire Lord</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">A spectacular display of detail and vibrant color. This magnificent dragon represents the peak of paper sculpting art.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Fire Lord')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 22. Cloud Sentinel -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760629646443.jpg" alt="A pure white, structured paper animal/creature." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/F0F0F0/000000?text=CLOUD+SENTINEL+WHITE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Cloud Sentinel</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">Its pure white form is a study in texture, creating a delicate yet powerful presence on a wall or shelf.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Cloud Sentinel')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 23. Royal Matrix -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1760715892123.jpg" alt="Black and gold geometric pattern in paper." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/222222/FFD700?text=ROYAL+MATRIX+BG';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Royal Matrix</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The luxurious combination of black and metallic gold instantly brings a feeling of wealth and opulence to any setting.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Royal Matrix')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 24. Ocean Depth -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="1758793153960.jpg" alt="Deep blue or purple structured paper fold." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/000080/ffffff?text=OCEAN+DEPTH+BLUE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">Ocean Depth</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">The complex folds and deep color evoke the mystery and power of the deep sea.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('Ocean Depth')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                <!-- 25. The Shadow Wings -->
-                <div class="artwork-card bg-white rounded-lg shadow-md">
-                    <img src="Screenshot_20251020-204558_Instagram.jpg" alt="A pair of large, dark, detailed paper wings." class="w-full h-48 object-cover rounded-t-lg" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x400/333333/ffffff?text=SHADOW+WINGS+LARGE';">
-                    <div class="card-content-wrapper">
-                        <div>
-                            <h3 class="font-lora font-semibold text-lg mb-1">The Shadow Wings</h3>
-                            <p class="text-gray-500 text-xs mb-4 leading-snug">A large format, dramatic sculpture perfect as a main wall accent in a modern or gothic-inspired home.</p>
-                            <hr class="mb-4 border-gray-100">
-                        </div>
-                        <button onclick="handleBuyNow('The Shadow Wings')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
-                    </div>
-                </div>
-
-                </div>
+            <!-- **CRITICAL CHANGE**: The Gallery content is now rendered dynamically by JavaScript -->
+            <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+                <!-- Gallery items will be injected here by JavaScript -->
+            </div>
             
             <div class="text-center mt-12 p-8 bg-white rounded-lg shadow-lg border border-gray-200">
                  <h3 class="font-lora text-2xl font-bold mb-3 text-gray-800">Ready for a Custom Vision?</h3>
@@ -552,7 +222,6 @@
             </div>
         </section>
         
-        <!-- Commissions Section -->
         <section id="commissions" class="py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-b border-gray-100">
              <h2 class="font-lora text-3xl font-bold text-center mb-12 text-gray-800">The 3-Step Commission Process</h2>
 
@@ -579,7 +248,6 @@
         </section>
 
 
-        <!-- Contact Section -->
         <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto p-8 bg-white rounded-xl shadow-2xl">
                 
@@ -596,135 +264,247 @@
                         
                         <button type="submit" class="cta-button gold-bg w-full">SEND COMMISSION INQUIRY</button>
                     </form>
-                    <p class="text-xs text-gray-500 mt-2">Note: You must have WhatsApp installed on your device to complete the submission.</p>
+
                 </div>
 
-                <div class="lg:pl-10 lg:border-l border-gray-300">
-                    <h2 class="font-lora text-3xl font-bold mb-4">Direct Sales & Social</h2>
-                    <p class="mb-6 text-gray-600">For immediate purchases, latest availability, and exclusive previews of new work, connect with us on Instagram.</p>
-
-                    <div class="mb-8 text-center bg-gray-50 p-6 rounded-lg shadow-inner border border-gray-200">
-                        <p class="text-lg font-semibold text-gray-700 mb-2">Connect with the Community:</p>
-                        <a href="https://instagram.com/ayushfolds" target="_blank" class="instagram-handle block">@ayushfolds</a>
-                        <p class="mt-4 text-sm text-gray-500 italic">Tap the **Buy Now** button in the gallery to generate your pre-filled message.</p>
+                <div class="lg:pl-10 lg:border-l border-gray-200">
+                    <h2 class="font-lora text-3xl font-bold mb-4">Direct Contact</h2>
+                    <p class="text-gray-600 mb-6">You can also reach out instantly via DM or email.</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-1">Instagram</p>
+                            <a href="https://instagram.com/ayushfolds" target="_blank" class="instagram-handle">@ayushfolds</a>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-1">Email</p>
+                            <a href="mailto:ayushfolds@example.com" class="text-lg text-gray-700 hover:text-gray-900 transition-colors">ayushfolds@example.com</a>
+                        </div>
+                        <div>
+                            <p class="text-sm font-bold uppercase tracking-wider text-gray-500 mb-1">Location</p>
+                            <p class="text-lg text-gray-700">Shipping Worldwide (Based in INDIA)</p>
+                        </div>
                     </div>
-
-                    <h3 class="font-lora text-xl font-bold mb-3">Professional Contact</h3>
-                    <p class="text-gray-600">We strive to respond to all inquiries as quickly as possible on WhatsApp/Instagram.</p>
                 </div>
             </div>
         </section>
-
     </main>
-    
-    <footer class="text-center py-8 border-t border-gray-200 mt-12 text-sm text-gray-600 bg-white/50">
-        <p>&copy; 2025 Ayush Folds. All Rights Reserved.</p>
-        <p class="font-lora mt-1 italic">Crafted with Precision.</p>
+
+    <footer class="bg-gray-100 mt-12 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
+            &copy; 2025 Ayush Folds. All Rights Reserved. | Paper Sculptures by Ayush.
+        </div>
     </footer>
 
     <script>
-        // CRITICAL: WhatsApp number configured as provided by the user (916207506959)
-        const WHATSAPP_NUMBER = '916207506959'; 
+        // Data Array: Each object is one piece of art, ensuring the image, title, and description are forever linked.
+        const galleryData = [
+            // The Golden Wyvern: Using the blue metallic star-like fold from 1000019075.jpg
+            { 
+                title: "The Golden Wyvern", 
+                image: "1000019075.jpg", 
+                description: "Its metallic sheen captures light dramatically, making it an instant centerpiece that signals sophistication. **Invest in a touch of luxury!**" 
+            },
+            // The Blue Phantom: Using the yellow violin/statue-like fold from 1000019075.jpg (needs a unique crop/file)
+            { 
+                title: "The Blue Phantom", 
+                image: "1000019083.jpg", // Using a unique, available image for placeholder
+                description: "The complex, flying form creates powerful shadows, transforming paper into a breathtaking expression of dynamic energy. **Grab this unique piece before it flies away!**" 
+            },
+            // Crimson Tide: Using the pink origami crane from 1000019076.jpg
+            { 
+                title: "Crimson Tide", 
+                image: "1000019076.jpg", 
+                description: "The deep, rich crimson is a symbol of energy and passion, perfect for inspiring creativity in a personal workspace. **Ignite your space with this fiery art!**" 
+            },
+            // The Shadow Stalker: Using the yellow winged creature/horse from 1000019084.jpg
+            { 
+                title: "The Shadow Stalker", 
+                image: "1000019084.jpg", 
+                description: "Its sharp, geometric lines beautifully complement modern and industrial design themes. **A conversation piece built on precision. Secure yours now!**" 
+            },
+            // The Hooded Sage: Using the small orange-yellow dragon from 1000019077.jpg
+            { 
+                title: "The Hooded Sage", 
+                image: "1000019077.jpg", 
+                description: "This masterwork of geometric folding offers a timeless, stoic presence that instantly elevates any art collection. **Elevate your space with this quiet masterpiece!**" 
+            },
+            // The Emerald Guard: Using the small pink flower from 1000019078.jpg
+            { 
+                title: "The Emerald Guard", 
+                image: "1000019078.jpg", 
+                description: "Use the serene, deep emerald tone to introduce a calming, organic texture and color into your interior space. **A piece of tranquility you must own!**" 
+            },
+            // Midnight Bloom: Using the blue star flower on a black background from 1000019079.jpg
+            { 
+                title: "Midnight Bloom", 
+                image: "1000019079.jpg", 
+                description: "This exquisite blue flower on black is a statement piece for modern, high-contrast decor. **A true collector's contrast. Buy it now!**" 
+            },
+            // The Sun-Split Fold: Using the small brown butterflies from 1000019080.jpg
+            { 
+                title: "The Sun-Split Fold", 
+                image: "1000019080.jpg", 
+                description: "Captures the intensity of a sunset. This geometric piece adds warmth and vibrant structure to any space. **Add this splash of color to your home!**" 
+            },
+            // The Tessellation: Using the yellow geometric fold on a brown box from 1000019081.jpg
+            { 
+                title: "The Tessellation", 
+                image: "1000019081.jpg", 
+                description: "A marvel of mathematical precision. The repeating pattern draws the eye and calms the mind. **Own the geometry of calm. Order today!**" 
+            },
+            // The Obsidian Shard: Using the tall, light-brown paper figurine from 1000019082.jpg
+            { 
+                title: "The Obsidian Shard", 
+                image: "1000019082.jpg", 
+                description: "Its dark hue and sharp lines offer a minimalist yet powerful statement. Perfect for a sophisticated office or study. **Bring this bold statement home!**" 
+            },
+            // The Ghost Fold: Using the green squirrel-like fold from 1000019082.jpg
+            { 
+                title: "The Ghost Fold", 
+                image: "1000019082.jpg", 
+                description: "A subtle, monochromatic piece that relies on light and shadow for its beauty. The ultimate complement to any wall art. **Subtle elegance is always in style. Shop now!**" 
+            },
+            // The Dragon's Eye: Using the orange deer-like fold from 1000019083.jpg
+            { 
+                title: "The Dragon's Eye", 
+                image: "1000019083.jpg", 
+                description: "An intensely detailed piece of a dragon's face, symbolizing strength and good fortune. **Unleash the power of the Dragon in your collection!**" 
+            },
+            // Dual-Tone Structure: Using the light blue tent-like fold from 1000019084.jpg
+            { 
+                title: "Dual-Tone Structure", 
+                image: "1000019084.jpg", 
+                description: "The perfect intersection of dark and light, this piece emphasizes form and negative space. **The ideal piece for a minimalist aesthetic!**" 
+            },
+            // Adding a few more items to fill out the grid nicely
+            { 
+                title: "Forest Whisper", 
+                image: "https://placehold.co/600x400/388e3c/ffffff?text=FOREST+WHISPER", 
+                description: "The deep, muted green brings a sense of grounded nature and calm to your home or office. **A calming presence for any busy space. Order now!**" 
+            },
+            { 
+                title: "Vortex Symmetry", 
+                image: "https://placehold.co/600x400/303030/eeeeee?text=VORTEX+SYMMETRY", 
+                description: "A mesmerizing, spiraling design that perfectly demonstrates the power of pattern and repetition. **Capture motion in a static form. Don't miss this!**" 
+            },
+            { 
+                title: "The Pure Fold", 
+                image: "https://placehold.co/600x400/E0E0E0/303030?text=THE+PURE+FOLD", 
+                description: "Texture and shadow are the focus here. A masterpiece that requires perfect lighting to reveal its depth. **The ultimate neutral statement piece. Get it now!**" 
+            },
+            { 
+                title: "The Royal Fold", 
+                image: "https://placehold.co/600x400/9C27B0/ffffff?text=THE+ROYAL+FOLD", 
+                description: "The rich maroon color gives this structured piece a regal and authoritative presence. **A perfect gift for a respected colleague or loved one!**" 
+            },
+            { 
+                title: "Sky Weaver", 
+                image: "https://placehold.co/600x400/03A9F4/ffffff?text=SKY+WEAVER", 
+                description: "The brilliant blue tone instantly brightens a room, evoking clear skies and boundless creativity. **Bring the energy of the sky indoors!**" 
+            },
+        ];
 
-        /**
-         * Helper function to display status messages (since we cannot use alert())
-         */
-        function updateStatus(message, isError = false) {
-            const statusDiv = document.getElementById('contactFormStatus');
-            statusDiv.textContent = message;
-            statusDiv.classList.remove('hidden', 'bg-red-100', 'text-red-700', 'bg-green-100', 'text-green-700');
-            if (isError) {
-                statusDiv.classList.add('bg-red-100', 'text-red-700');
-            } else {
-                statusDiv.classList.add('bg-green-100', 'text-green-700');
+        // Function to shuffle an array (Fisher-Yates)
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[i-1]] = [array[i-1], array[i]];
             }
-            statusDiv.classList.remove('hidden'); // Ensure it is visible
         }
 
-        /**
-         * Captures form data, constructs a WhatsApp message, and opens the chat link.
-         */
+        // Function to render the gallery dynamically
+        function renderGallery() {
+            const container = document.getElementById('gallery-container');
+            if (!container) return;
+            
+            // OPTIONAL: Shuffle the array before rendering for a dynamic look
+            shuffleArray(galleryData);
+
+            let galleryHtml = '';
+
+            galleryData.forEach(item => {
+                const altText = item.title + " origami sculpture, handcrafted paper art.";
+                const fallbackImage = `https://placehold.co/600x400/CCCCCC/333333?text=${encodeURIComponent(item.title.toUpperCase())}`;
+
+                galleryHtml += `
+                    <div class="artwork-card bg-white rounded-lg shadow-md">
+                        <img 
+                            src="${item.image}" 
+                            alt="${altText}" 
+                            class="w-full h-48 object-cover rounded-t-lg" 
+                            loading="lazy" 
+                            onerror="this.onerror=null; this.src='${fallbackImage}';"
+                        >
+                        <div class="card-content-wrapper">
+                            <div>
+                                <h3 class="font-lora font-semibold text-lg mb-1">${item.title}</h3>
+                                <p class="text-gray-500 text-xs mb-4 leading-snug">${item.description}</p>
+                                <hr class="mb-4 border-gray-100">
+                            </div>
+                            <button onclick="handleBuyNow('${item.title}')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = galleryHtml;
+        }
+
+        // WhatsApp/DM Logic
+        function handleBuyNow(productName) {
+            const message = `I am interested in purchasing the artwork: ${productName}. Please share the current price and availability!`;
+            
+            // Set up modal (failsafe)
+            document.getElementById('modalMessage').innerHTML = `
+                The Instagram DM should now open with a pre-filled message for <strong>${productName}</strong>.
+                <br><br>
+                <span class="font-bold text-sm text-red-600">
+                    If the message is empty, please copy/type the exact message:
+                </span>
+            `;
+            document.getElementById('failsafeMessage').value = message;
+            
+            // Attempt to open DM with pre-filled message
+            const encodedMessage = encodeURIComponent(message);
+            const instagramUrl = `https://instagram.com/direct/t/ayushfolds/?text=${encodedMessage}`;
+            
+            document.getElementById('modalLink').href = instagramUrl;
+            document.getElementById('instructionModal').classList.remove('hidden');
+
+            window.open(instagramUrl, '_blank');
+        }
+
         function submitToWhatsApp(event) {
             event.preventDefault();
             const form = event.target;
+            const name = form.elements['name'].value;
+            const email = form.elements['email'].value;
+            const message = form.elements['message'].value;
+
+            const whatsappMessage = `Commission Inquiry from Website:\nName: ${name}\nEmail: ${email}\n\nIdea: ${message}`;
             
-            // Clear previous status
-            document.getElementById('contactFormStatus').classList.add('hidden'); 
-
-            // 1. Basic validation
-            if (WHATSAPP_NUMBER.length < 8) {
-                updateStatus('Configuration Error: WhatsApp number is not configured correctly.', true);
-                console.error('WhatsApp configuration error.');
-                return;
-            }
-
-            // 2. Get form field values
-            const name = form.querySelector('[name="name"]').value;
-            const email = form.querySelector('[name="email"]').value;
-            const message = form.querySelector('[name="message"]').value;
-
-            // 3. Construct the message body for WhatsApp
-            const fullMessage = `
-*New Commission Inquiry from Ayush Folds Website*
-Name: ${name}
-Email: ${email}
----
-Commission Idea:
-${message}
-            `.trim();
-
-            // 4. Encode and generate link
-            const encodedMessage = encodeURIComponent(fullMessage);
-            const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-
-            // 5. Open WhatsApp
-            window.open(waLink, '_blank');
+            // Use the modal as the confirmation mechanism
+            document.getElementById('modalMessage').innerHTML = `
+                Your commission inquiry is ready! Click below to send it to Ayush Folds via Instagram DM.
+                <br><br>
+                <span class="font-bold text-sm text-red-600">
+                    Please ensure the message below is included:
+                </span>
+            `;
+            document.getElementById('failsafeMessage').value = whatsappMessage;
             
-            // 6. Provide user feedback and reset form
-            updateStatus('Success! A new WhatsApp chat has opened with your inquiry pre-filled. Please tap "Send" in WhatsApp.', false);
-            form.reset();
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            const instagramUrl = `https://instagram.com/direct/t/ayushfolds/?text=${encodedMessage}`;
+            
+            document.getElementById('modalLink').href = instagramUrl;
+            document.getElementById('instructionModal').classList.remove('hidden');
+            
+            window.open(instagramUrl, '_blank');
         }
 
-
-        /**
-         * Shows the instruction modal and opens the Instagram DM link.
-         * @param {string} productName - The name of the product being purchased.
-         */
-        function handleBuyNow(productName) {
-            const failsafeMessageText = `Hello Ayush Folds, I am interested in purchasing the *${productName}* sculpture. Please send me the final price and payment details. Thank you!`;
-
-            // 1. Construct the direct DM link with pre-fill
-            const encodedMessage = encodeURIComponent(failsafeMessageText);
-            const dmLink = `https://ig.me/m/ayushfolds?prefill_text=${encodedMessage}`;
-            
-            // 2. Update and show the instruction modal
-            const modal = document.getElementById('instructionModal');
-            const failsafeInput = document.getElementById('failsafeMessage');
-            const modalLink = document.getElementById('modalLink');
-            
-            // Set the failsafe message for users to copy/type
-            failsafeInput.value = failsafeMessageText;
-            
-            // Set the link on the modal button
-            modalLink.href = dmLink;
-
-            // Show the modal
-            modal.classList.remove('hidden');
-
-            // 3. Immediately attempt to open the DM link in a new tab/window
-            window.open(dmLink, '_blank');
-        }
-
-        // Add a function to easily copy the failsafe message if needed (optional helper)
-        document.getElementById('failsafeMessage').addEventListener('click', function() {
-             const message = this.value;
-             // Use execCommand for broader compatibility in older iFrames/mobile webviews
-             if (document.execCommand('copy')) {
-                 this.select();
-             } else {
-                 console.error('Could not copy automatically.');
-             }
-        });
+        // Run the rendering function when the page loads
+        document.addEventListener('DOMContentLoaded', renderGallery);
     </script>
 </body>
-                </html>
+            </html>
