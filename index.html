@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayush Folds: Where Paper Meets Magic</title>
     
+    <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter and Lora fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
         /* Custom Variables and Global Styles */
         :root {
-            /* **CHANGE 1: Goldish/Professional Colors** */
+            /* Goldish/Professional Colors */
             --color-bg: #FCF9F5; /* Soft Cream/Off-White for body */
             --color-gradient-start: #FEFAE6; /* Lighter Cream/Gold tone */
             --color-gradient-end: #F8F4E6;   /* Deeper Cream/Gold tone */
@@ -24,17 +26,15 @@
         body {
             font-family: var(--font-body);
             color: var(--color-text);
-            /* **CHANGE 1: New Goldish Background Gradient** */
             background: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
             scroll-behavior: smooth;
         }
 
-        /* Styling for the elegant Lora font */
         .font-lora {
             font-family: var(--font-heading);
         }
 
-        /* Primary Call-to-action Button (Used for Buy Now) */
+        /* Primary Call-to-action Button */
         .cta-button {
             display: inline-block;
             padding: 0.75rem 1.5rem;
@@ -60,7 +60,7 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
         }
         
-        /* Secondary (Bordered) Style - Used for general links */
+        /* Secondary (Bordered) Style */
         .transparent-border-cta {
             background-color: transparent;
             color: var(--color-accent);
@@ -93,7 +93,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
             display: flex;
-            flex-direction: column; /* Ensure full height stacking */
+            flex-direction: column;
         }
         .artwork-card:hover {
             transform: translateY(-3px);
@@ -102,12 +102,12 @@
         
         /* Force button to the bottom of the card content */
         .card-content-wrapper {
-            flex-grow: 1; /* Allows content area to expand */
+            flex-grow: 1; 
             padding: 1rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            background-color: #ffffff; /* White card background for contrast */
+            background-color: #ffffff;
         }
 
         /* Instagram Handle Styling */
@@ -126,6 +126,7 @@
 </head>
 <body class="antialiased">
 
+    <!-- Modal for Instagram/Failsafe Instructions -->
     <div id="instructionModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-75 flex justify-center items-center p-4" onclick="document.getElementById('instructionModal').classList.add('hidden')">
         <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full text-center" onclick="event.stopPropagation()">
             <h3 class="font-lora text-2xl font-bold text-gray-800 mb-3">Almost There!</h3>
@@ -133,35 +134,40 @@
                 The Instagram DM should now open with a pre-filled message.
                 <br><br>
                 <span class="font-bold text-sm text-red-600">
-                    If the message is empty, please copy/type the exact message:
+                    If the message is empty or the app fails to open, please copy the text below and send it manually on Instagram:
                 </span>
             </p>
             
             <input type="text" id="failsafeMessage" readonly class="w-full p-2 border border-gray-300 rounded-lg text-sm text-center font-mono select-all mb-4" value="" />
 
-            <a id="modalLink" href="https://www.instagram.com/ayshfolds" target="_blank" class="cta-button gold-bg w-full">
+            <a id="modalLink" href="https://www.instagram.com/ayushfolds" target="_blank" class="cta-button gold-bg w-full">
                 Go to Instagram Profile
             </a>
             <p class="text-xs text-gray-400 mt-3">Click anywhere outside the box to close.</p>
         </div>
     </div>
 
+    <!-- Header & Navigation -->
     <header class="bg-white/90 sticky top-0 z-10 shadow-md border-b border-gray-200">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
             <div class="text-2xl font-lora font-bold tracking-wider text-gray-800">AYUSH FOLDS</div>
-            <ul class="flex space-x-4 sm:space-x-6 text-sm font-medium text-gray-600 uppercase">
+            <ul class="hidden sm:flex space-x-4 sm:space-x-6 text-sm font-medium text-gray-600 uppercase">
                 <li><a href="#gallery" class="nav-link transition-colors">Gallery (The Growing Collection)</a></li>
                 <li><a href="#commissions" class="nav-link transition-colors">Process</a></li>
                 <li><a href="#contact" class="nav-link transition-colors">Contact</a></li>
             </ul>
+            <!-- Mobile Menu Placeholder (Not fully implemented, relies on smooth scrolling) -->
+            <a href="#contact" class="sm:hidden cta-button transparent-border-cta">Contact</a>
         </nav>
     </header>
 
     <main class="max-w-7xl mx-auto">
+        <!-- Hero Section -->
         <section id="hero" class="py-12 px-4 sm:py-20 sm:px-6 lg:px-8 text-center">
             
             <div id="hero-triptych" class="image-triptych grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
-                </div>
+                <!-- Images will be injected here by JS -->
+            </div>
 
             <div class="hero-content max-w-4xl mx-auto">
                 <h1 class="font-lora text-4xl sm:text-6xl font-extrabold mb-4 leading-tight text-gray-900">
@@ -191,11 +197,13 @@
             </div>
         </section>
 
+        <!-- Gallery Section -->
         <section id="gallery" class="py-16 px-4 sm:px-6 lg:px-8">
             <h2 class="font-lora text-3xl font-bold mb-10 border-b-2 border-gray-300 pb-3 text-gray-800">The Growing Collection</h2>
             
             <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                </div>
+                <!-- Gallery cards will be injected here by JS -->
+            </div>
             
             <div class="text-center mt-12 p-8 bg-white rounded-lg shadow-lg border border-gray-200">
                  <h3 class="font-lora text-2xl font-bold mb-3 text-gray-800">Ready for a Custom Vision?</h3>
@@ -204,6 +212,7 @@
             </div>
         </section>
         
+        <!-- Commission Process Section -->
         <section id="commissions" class="py-16 px-4 sm:px-6 lg:px-8 bg-white border-t border-b border-gray-100">
              <h2 class="font-lora text-3xl font-bold text-center mb-12 text-gray-800">The 3-Step Commission Process</h2>
 
@@ -230,21 +239,28 @@
         </section>
 
 
+        <!-- Contact Section -->
         <section id="contact" class="py-16 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto p-8 bg-white rounded-xl shadow-2xl">
                 
                 <div class="lg:pr-10">
                     <h2 class="font-lora text-3xl font-bold mb-4">Commission Inquiry (Via WhatsApp)</h2>
-                    <p class="mb-8 text-gray-600">Fill in your details below. When you click **SEND**, a new WhatsApp window will open with your message pre-filled, ready for you to send directly.</p>
+                    <p class="mb-8 text-gray-600">Fill in your details below. When you click **SEND**, a new **WhatsApp** window will open with your message pre-filled, ready for you to send directly to us.</p>
 
                     <div id="contactFormStatus" class="text-sm p-3 rounded-lg hidden"></div>
 
-                    <form class="space-y-4" onsubmit="submitToWhatsApp(event)">
-                        <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700">
-                        <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700">
-                        <textarea name="message" placeholder="Describe your commission idea, desired size, and timeline..." rows="5" required class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700"></textarea>
+                    <form id="whatsappForm" class="space-y-4">
+                        <input type="text" id="userName" name="name" placeholder="Your Name" required 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700">
                         
-                        <button type="submit" class="cta-button gold-bg w-full">SEND COMMISSION INQUIRY</button>
+                        <input type="email" id="userEmail" name="email" placeholder="Your Email" required 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700">
+                        
+                        <textarea id="userMessage" name="message" placeholder="Describe your commission idea, desired size, and timeline..." rows="5" required 
+                                  class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-1 focus:ring-gray-700"></textarea>
+                        
+                        <!-- BUTTON CALLS THE WHATSAPP FUNCTION -->
+                        <button type="button" onclick="sendWhatsAppInquiry()" class="cta-button gold-bg w-full">SEND COMMISSION INQUIRY</button>
                     </form>
 
                 </div>
@@ -272,6 +288,7 @@
         </section>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-gray-100 mt-12 py-8 px-4 sm:px-6 lg:px-8 border-t border-gray-200">
         <div class="max-w-7xl mx-auto text-center text-sm text-gray-500">
             &copy; 2025 Ayush Folds. All Rights Reserved. | Paper Sculptures by Ayush.
@@ -280,9 +297,7 @@
 
     <script>
         // Data Array: This array powers the product gallery.
-        // NOTE: The 'image' path assumes the file is in the same folder as this HTML file.
         const galleryData = [
-            // --- YOUR NEW PRODUCTS START HERE ---
             { 
                 title: "Geometric Starburst Bloom", 
                 image: "Niebieski kwiat origami na czarnym tle.png", 
@@ -398,8 +413,6 @@
                 image: "Screenshot_20250921-090739_Google.jpg", 
                 description: "Perfect as a favor tag or table scatter for weddings, anniversaries, or St. Patrick's Day parties. Its simple geometry is ideal for DIY greeting cards.." 
             },
-            // The image IDs below are for hero section placeholders and are kept for script integrity.
-            // These placeholders are inside the renderHeroImages function.
         ];
 
         // Function to shuffle an array (Fisher-Yates)
@@ -433,11 +446,13 @@
 
             let heroHtml = '';
             heroImages.forEach((img) => {
+                // Placeholder image for safety if the user hasn't uploaded all files
+                const fallbackImage = 'https://placehold.co/600x400/CCCCCC/333333?text=FOLD+IMAGE+LOAD+ERROR';
                 heroHtml += `
                     <img 
                         src="${img.src}" 
                         alt="${img.alt}"
-                        onerror="this.onerror=null; this.src='https://placehold.co/600x400/CCCCCC/333333?text=FOLD+IMAGE+LOAD+ERROR';"
+                        onerror="this.onerror=null; this.src='${fallbackImage}';"
                     >
                 `;
             });
@@ -449,7 +464,7 @@
             const container = document.getElementById('gallery-container');
             if (!container) return;
             
-            // OPTIONAL: Shuffle the array before rendering for a dynamic look
+            // Randomize the order of display
             shuffleArray(galleryData);
 
             let galleryHtml = '';
@@ -473,6 +488,7 @@
                                 <p class="text-gray-500 text-xs mb-4 leading-snug">${item.description}</p>
                                 <hr class="mb-4 border-gray-100">
                             </div>
+                            <!-- Updated to call handleBuyNow with the product name -->
                             <button onclick="handleBuyNow('${item.title}')" class="cta-button gold-bg w-full mt-auto">BUY NOW</button>
                         </div>
                     </div>
@@ -482,63 +498,100 @@
             container.innerHTML = galleryHtml;
         }
 
-        // WhatsApp/DM Logic
+        // 1. AGGRESSIVE INSTAGRAM DM/Profile Link (BUY NOW)
         function handleBuyNow(productName) {
-            const message = `I am interested in purchasing the artwork: ${productName}. Please share the current price and availability!`;
-            
-            // Set up modal (failsafe)
-            document.getElementById('modalMessage').innerHTML = `
-                The Instagram DM should now open with a pre-filled message for <strong>${productName}</strong>.
-                <br><br>
-                <span class="font-bold text-sm text-red-600">
-                    If the message is empty, please copy/type the exact message:
-                </span>
-            `;
-            document.getElementById('failsafeMessage').value = message;
-            
-            // Attempt to open DM with pre-filled message
+            const username = "ayushfolds";
+            // Message using readable text for best copy/paste results
+            const message = `Hello Ayush, I want to purchase the artwork: ${productName}. Please share the current price and availability!`;
             const encodedMessage = encodeURIComponent(message);
-            const instagramUrl = `https://instagram.com/direct/t/ayushfolds/?text=${encodedMessage}`;
             
-            document.getElementById('modalLink').href = instagramUrl;
-            document.getElementById('instructionModal').classList.remove('hidden');
+            // Primary link using ig.me for best mobile app launch reliability
+            const igMeUrl = `https://ig.me/m/${username}?ref=${encodedMessage}`;
+            // Fallback to the profile page (more reliable)
+            const fallbackProfileUrl = `https://www.instagram.com/${username}`;
 
-            window.open(instagramUrl, '_blank');
-        }
-
-        function submitToWhatsApp(event) {
-            event.preventDefault();
-            const form = event.target;
-            const name = form.elements['name'].value;
-            const email = form.elements['email'].value;
-            const message = form.elements['message'].value;
-
-            const whatsappMessage = `Commission Inquiry from Website:\nName: ${name}\nEmail: ${email}\n\nIdea: ${message}`;
-            
-            // Use the modal as the confirmation mechanism
+            // --- Failsafe Modal Setup ---
             document.getElementById('modalMessage').innerHTML = `
-                Your commission inquiry is ready! Click below to send it to Ayush Folds via Instagram DM.
+                We are attempting to launch the Instagram app to send a DM about <strong>${productName}</strong>.
+                <br>
+                <span class="font-bold text-gray-800">Please tap 'Message' if the app opens or wait 1 second.</span>
                 <br><br>
                 <span class="font-bold text-sm text-red-600">
-                    Please ensure the message below is included:
+                    If the message is empty or the app fails to open, please copy the text below and send it manually:
                 </span>
             `;
-            document.getElementById('failsafeMessage').value = whatsappMessage;
-            
-            const encodedMessage = encodeURIComponent(whatsappMessage);
-            const instagramUrl = `https://instagram.com/direct/t/ayushfolds/?text=${encodedMessage}`;
-            
-            document.getElementById('modalLink').href = instagramUrl;
+            // Fills the failsafe input with the clean message
+            document.getElementById('failsafeMessage').value = message; 
+            document.getElementById('modalLink').href = fallbackProfileUrl; 
             document.getElementById('instructionModal').classList.remove('hidden');
-            
-            window.open(instagramUrl, '_blank');
+
+            // --- Execution Logic: Attempt aggressive link ---
+            // Try to open the ig.me link
+            window.open(igMeUrl, '_blank'); 
+
+            // Set a timeout to check if the modal is still open, meaning the app launch failed
+            setTimeout(function() {
+                if (!document.getElementById('instructionModal').classList.contains('hidden')) {
+                     // If it failed, try the web profile link as a last resort
+                     window.open(fallbackProfileUrl, '_blank');
+                }
+            }, 1000); 
+
         }
 
-        // Run the rendering function when the page loads
+        // 2. WHATSAPP COMMISSION INQUIRY FORM (Fixed Formatting)
+        function sendWhatsAppInquiry() {
+            // Get form elements by their ID
+            const nameElement = document.getElementById('userName');
+            const emailElement = document.getElementById('userEmail');
+            const messageElement = document.getElementById('userMessage');
+
+            // Simple validation
+            if (!nameElement.value || !emailElement.value || !messageElement.value) {
+                 // The browser's 'required' attribute should handle visible errors, but we stop the function here.
+                 console.error("Validation failed: Please fill out all required fields.");
+                 return; 
+            }
+
+            // Get data from the form fields
+            const name = nameElement.value;
+            const email = emailElement.value;
+            const message = messageElement.value;
+
+            // Your WhatsApp number (India code 91)
+            const phoneNumber = '916207506959'; 
+
+            // Construct the message using actual new lines. 
+            // The browser's encodeURIComponent will convert them to %0A but without the * or other complex encodings.
+            const rawMessage = 
+`Hello Ayush Folds,
+
+I have a commission inquiry from your website.
+
+---
+Contact Details
+Name: ${name}
+Email: ${email}
+---
+
+Project Idea
+${message}`;
+            
+            // Create the final WhatsApp URL 
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(rawMessage)}`;
+
+            // Open the link in a new tab/window
+            window.open(whatsappURL, '_blank');
+
+            // Clear the form after submission attempt
+            document.getElementById('whatsappForm').reset();
+        }
+
+        // Run the rendering functions when the page loads
         document.addEventListener('DOMContentLoaded', () => {
             renderHeroImages();
             renderGallery();
         });
     </script>
 </body>
-</html>
+        </html>
